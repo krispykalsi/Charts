@@ -343,24 +343,24 @@ open class ViewPortHandler: NSObject
     
     @objc open func isInBoundsLeft(_ x: CGFloat) -> Bool
     {
-        return contentRect.origin.x <= x + 1.0
+        return Float(contentRect.origin.x) <= Float(x + 1.0)
     }
     
     @objc open func isInBoundsRight(_ x: CGFloat) -> Bool
     {
         let x = floor(x * 100.0) / 100.0
-        return (contentRect.origin.x + contentRect.size.width) >= x - 1.0
+        return Float(contentRect.origin.x + contentRect.size.width) >= Float(x - 1.0)
     }
     
     @objc open func isInBoundsTop(_ y: CGFloat) -> Bool
     {
-        return contentRect.origin.y <= y
+        return Float(contentRect.origin.y) <= Float(y)
     }
     
     @objc open func isInBoundsBottom(_ y: CGFloat) -> Bool
     {
         let normalizedY = floor(y * 100.0) / 100.0
-        return (contentRect.origin.y + contentRect.size.height) >= normalizedY
+        return Float(contentRect.origin.y + contentRect.size.height) >= Float(normalizedY)
     }
     
     /**
