@@ -968,6 +968,12 @@ public extension LineChartRenderer {
     }
 }
 
+public extension LineChartRenderer {
+    func graphWillAppear() {
+        bubbleAnimationView?.resumePulse()
+    }
+}
+
 // MARK: - Ripple effect methods
 private extension UIView {
     func addPulseEffect(at point: CGPoint, with color: UIColor, size: CGFloat) {
