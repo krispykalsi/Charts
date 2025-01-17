@@ -58,6 +58,11 @@ public protocol DataRenderer: Renderer
     @objc optional func drawBubbles(context: CGContext, view: UIView)
     @objc optional func didShowMarker(at rect: CGRect)
     @objc optional func didHideMarker()
+
+    /// When graph comes into view port
+    @objc optional func graphWillAppear()
+    /// When graph goes out of view port
+    @objc optional func graphWillDisAppear()
 }
 
 internal struct AccessibleHeader {
