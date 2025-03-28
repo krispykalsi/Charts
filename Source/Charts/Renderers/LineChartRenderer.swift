@@ -661,6 +661,7 @@ open class LineChartRenderer: LineRadarRenderer
                     parentView?.addSubview(bubbleAnimationView!)
                     bubbleAnimationView?.frame = rect
                     bubbleAnimationView?.backgroundColor = dataSet.fillColor
+                    bubbleAnimationView?.setBubbleSubview(bgColor: dataSet.fillColor)
                     bubbleAnimationView?.layer.cornerRadius = rect.height / 2
                     /// Approx time to download and chart rendering, bubble shuold be animated post that.
                     let latency: TimeInterval = 0.7
@@ -976,9 +977,18 @@ public extension LineChartRenderer {
 
 // MARK: - Ripple effect methods
 private extension UIView {
+    func setBubbleSubview(bgColor: UIColor) {
+        viewWithTag(55555)?.backgroundColor = bgColor
+        viewWithTag(66666)?.backgroundColor = bgColor
+    }
+    
     func addPulseEffect(at point: CGPoint, with color: UIColor, size: CGFloat) {
+        if viewWithTag(55555) != nil {
+            return setBubbleSubview(bgColor: color)
+        }
         guard nil == viewWithTag(55555) else {return}
         let bubbleView = UIView(frame: CGRect(origin: point, size: CGSize(width: size, height: size)))
+        bubbleView.tag = 66666
         bubbleView.isUserInteractionEnabled = false
         bubbleView.layer.cornerRadius = size / 2
         bubbleView.backgroundColor = color
